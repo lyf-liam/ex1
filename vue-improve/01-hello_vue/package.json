@@ -1,0 +1,17 @@
+{
+  "name": "vue-improve",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^4.2.1"
+  },
+  "dependencies": {
+    "vue": "^3.2.47"
+  },
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}
