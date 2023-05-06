@@ -41,17 +41,19 @@ const delStuByIndex = (index) => {
 }
 // 添加一个删除学生的方法
 const addNewStudent = (student) => {
-    console.log(STU_ARR.value.length);
+    console.log(STU_ARR.value.length)
+    const len = STU_ARR.value.length
 
     // 此处.at()函数会报错，未找到原因
     // const lastId = STU_ARR.value.at(-1)?.id
-    // const newId = lastId + 1
-    // console.log(newId);
 
-    const lastId = STU_ARR.value.length
+    const lastId = STU_ARR.value[len-1]?.id
+    // const lastId = STU_ARR.value.length
     const newId = lastId + 1
     student.id = newId
     STU_ARR.value.push(student)
+    const arr = [1,2,3]
+    console.log(arr.at(1));
 }
 </script>
 
