@@ -1,18 +1,16 @@
 <script setup>
+import StudentItem from './studentItem.vue';
+
+import { inject,provide } from 'vue';
+
+
 // 通过defineProps定义的属性在attrs中就不存在了
 // 使用自定义属性时，最好通过defineProps来声明一下
 // const props = defineProps(["students","fn"])
-const props = defineProps(["students"])
-const emits = defineEmits(["delStu"]) 
 
-// 定义一个删除学生的方法
-const delStuHandler = (index) => {
-    if(confirm("该操作不可恢复，请确认！")){
-        // props.students.splice(index,1)
-        // props.fn(index)
-        emits("delStu",index)
-    }
-}
+// const props = defineProps(["students"])
+// const emits = defineEmits(["delStu"]) 
+
 </script>
 <template>
     <!-- {{ $attrs.stus }} -->
@@ -29,21 +27,11 @@ const delStuHandler = (index) => {
                 <th>操作</th>
             </tr>
         </thead>
-        <tbody>
-            <tr v-for="(stu,index) in props.students">
-                <td>{{ stu.id }}</td>
-                <td>{{ stu.name }}</td>
-                <td>{{ stu.age }}</td>
-                <td>{{ stu.gender }}</td>
-                <td>{{ stu.address }}</td>
-                <td>
-                    <!-- 在模板中可以通过$emit()来触发自定义事件 -->
-                    <!-- <a href="#" @click.prevent="$emit('delStu',index)">删除</a> -->
-                    <!-- <a href="#" @click.prevent="emits('delStu',index)">删除</a> -->
-                    <a href="#" @click.prevent="delStuHandler(index)">删除</a>
-                </td>
-            </tr>
-        </tbody>
+        <!-- 透传方法 -->
+        <!-- <StudentItem :students="$attrs.students" 
+        @del-stu="$attrs.onDelStu"></StudentItem> -->
+        <!-- 依赖注入 -->
+        <StudentItem></StudentItem>
     </table>
 </template>
 <style scoped>

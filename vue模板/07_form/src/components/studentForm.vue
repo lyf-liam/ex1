@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
+
+const {addNewStudent} = inject("student")
 
 const emits = defineEmits(["addStudent"])
 // 创建一个ref来存储新的信息
@@ -19,8 +21,10 @@ const submitHandler = () =>{
     // emits("addStudent",Object.assign({},newStu.value))
 
     // 用解构去传数据
-    emits("addStudent",{...newStu.value})
-    console.log({...newStu.value});
+    // emits("addStudent",{...newStu.value})
+
+    // 用依赖注入传递数据
+    addNewStudent({...newStu.value})
 
     // 让输入框清空
     newStu.value.name=""
