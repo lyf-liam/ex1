@@ -1,6 +1,9 @@
 <script setup>
 import { inject } from "vue"
-const { count, increment } = inject("count")
+
+import { countStore } from "../store/count";
+
+// const { count, increment } = inject("count")
 /* 
 状态管理
     - 状态(state)
@@ -20,7 +23,7 @@ const { count, increment } = inject("count")
 </script>
 <template>
     <h3>
-        ComponentA -- {{ count }} --
-        <button @click="increment">按钮</button>
+        ComponentA -- {{ countStore.count }} --
+        <button @click="countStore.increment">按钮</button>
     </h3>
 </template>
