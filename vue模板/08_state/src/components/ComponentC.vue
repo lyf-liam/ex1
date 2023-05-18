@@ -53,17 +53,39 @@ const clickHandler = () => {
 /* 
 store的订阅
     - 当store中的state发生变化时，做一些响应的操作
+    - store.$subscribe(函数，配置对象)
 */
 stuStore.$subscribe((mutation, state) => {
     // mutation 表示修改的信息
-    console.log(mutation.events);
-    console.log(mutation.events[0]);
-    console.log(mutation.events[1]);
-    console.log(mutation.events[0] == mutation.events[1]);
+    // console.log(mutation.events);
+    // console.log(mutation.events[0] == mutation.events[1]);
+    // console.log("1111 " + mutation.payload);
+
     // console.log("state发生变化", state);
     // 使用订阅时，不要在回调函数中直接修改state，会触发递归，会死循环。
 }, {
     detached: true
+})
+
+stuStore.$onAction(({ name, store, args, after, onError }) => {
+    /* 
+        name 调用的action的名字
+        store store实例
+        args action接收到的参数
+        after() 可以设置一个回调函数，函数会在action成功调用后触发
+        onError() 可以设置一个回调函数，函数会在action调用失败后触发
+    */
+
+    // console.log(args);
+
+    after(() => {
+        console.log(name + "成功执行");
+    })
+
+    onError((err) => {
+        console.log(name + "执行失败", err);
+    })
+
 })
 
 </script>
@@ -75,8 +97,8 @@ stuStore.$subscribe((mutation, state) => {
         <!-- 结构之后的方法 -->
         -- {{ name }} -- {{ age }} -- {{ title }}
         -- {{ stuStore.skill }}
+        -- {{ stuStore.double }}
         <br>
-        明天会更好
         <!-- -- {{ countStore.count }} -- -->
         <!-- <button @click="countStore.increment">按钮</button> -->
 

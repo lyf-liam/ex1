@@ -11,9 +11,13 @@ export const useStudentStore = defineStore("student",{
     }),
 
     getters:{
-        title:state => {
+        title:(state) => {
             return "Mr."+state.name
+        },
+        double(){
+            return this.age*2
         }
+
     },
 
     actions:{
